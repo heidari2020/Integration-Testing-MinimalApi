@@ -20,9 +20,9 @@ public class FullName : BaseValueObject<FullName>
     public static Result<FullName> Create(string firstName, string lastName)
     {
         if (string.IsNullOrWhiteSpace(firstName))
-            return Result.Fail<FullName>("Value is required for FirstName.");
+            return Result.Fail<FullName>("FirstName cannot be null.");
         if (string.IsNullOrWhiteSpace(lastName))
-            return Result.Fail<FullName>("Value is required for LastName.");
+            return Result.Fail<FullName>("LastName cannot be null.");
         if (firstName.Length > 100)
         {
             return Result.Fail<FullName>("The FirstName length is a maximum of 100 characters.");
