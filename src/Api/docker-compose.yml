@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: src/Api/Dockerfile
+    container_name: project-management-api
+    ports:
+      - "5000:80"
+      - "5001:443"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=db;Database=ProjectManagementDb;User=sa;Password=Your_password123;TrustServerCertificate=True
+    depends_on:
+      - db
+    networks:
+      - project-network
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: project-management-db
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Your_password123
+      - MSSQL_PID=Express
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+    networks:
+      - project-network
+
+volumes:
+  sqlserver-data:
+
+networks:
+  project-network:
+    driver: bridge
