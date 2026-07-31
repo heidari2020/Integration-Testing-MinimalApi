@@ -11,7 +11,7 @@ services:
       - "5001:443"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Server=db;Database=ProjectManagementDb;User=sa;Password=Your_password123;TrustServerCertificate=True
+      - ConnectionStrings__DefaultConnection=Server=db;Database=ProjectManagementDb;User=sa;Password=Sa_123456;TrustServerCertificate=True
     depends_on:
       - db
     networks:
@@ -22,7 +22,7 @@ services:
     container_name: project-management-db
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=Your_password123
+      - SA_PASSWORD=Sa_123456
       - MSSQL_PID=Express
     ports:
       - "1433:1433"
