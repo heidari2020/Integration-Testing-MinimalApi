@@ -14,7 +14,8 @@ public static class ProjectsEndpoints
     public static WebApplication MapProjectsEndpoints(this WebApplication app)
     {
         var group = app.MapGroup("/api/projects")
-            .WithTags("Projects");
+            .WithTags("Projects")
+            .RequireAuthorization();
 
         // GET: /api/projects
         group.MapGet("/", async (IMediator mediator) =>

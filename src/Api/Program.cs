@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Presentation;
+using Presentation.Endpoints;
 using Presentation.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -41,5 +42,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.MapProjectsEndpoints();
-
+app.MapAuthEndpoints();
 app.Run();
